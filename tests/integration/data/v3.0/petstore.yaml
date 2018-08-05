@@ -172,8 +172,7 @@ components:
       oneOf:
         - type: string
           enum: [always, now]
-        - type: string
-          format: date-time
+        - type: integer
     Address:
       type: object
       x-model: Address
