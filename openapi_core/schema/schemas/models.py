@@ -214,15 +214,18 @@ class Schema(object):
 
         value_props_names = value.keys()
         extra_props = set(value_props_names) - set(all_props_names)
-        if extra_props and self.additional_properties is None:
-            raise UndefinedSchemaProperty(
-                "Undefined properties in schema: {0}".format(extra_props))
+        # if extra_props and self.additional_properties is None:
+        #     raise UndefinedSchemaProperty(
+        #         "Undefined properties in schema: {0}".format(extra_props))
 
         properties = {}
         for prop_name in extra_props:
             prop_value = value[prop_name]
-            properties[prop_name] = self.additional_properties.unmarshal(
-                prop_value)
+            try:
+                properties[prop_name] = self.additional_properties.unmarshal(
+                    prop_value)
+            except AttributeError:
+                pass
 
         for prop_name, prop in iteritems(all_props):
             try:
