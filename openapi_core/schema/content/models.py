@@ -15,7 +15,7 @@ class Content(dict):
             pass
 
         for key, value in iteritems(self):
-            if fnmatch.fnmatch(mimetype, key):
+            if fnmatch.fnmatch(mimetype, f"{key}*"):
                 return value
 
         raise MimeTypeNotFound("{0} mimetype not found")
