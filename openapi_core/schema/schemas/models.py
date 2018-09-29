@@ -11,7 +11,7 @@ from openapi_core.schema.schemas.exceptions import (
     InvalidSchemaValue, UndefinedSchemaProperty, MissingSchemaProperty,
     OpenAPISchemaError, NoOneOfSchema, MultipleOneOfSchema,
 )
-from openapi_core.schema.schemas.util import forcebool, format_date
+from openapi_core.schema.schemas.util import forcebool, format_date, format_phone
 from openapi_core.schema.schemas.validators import (
     TypeValidator, AttributeValidator,
 )
@@ -31,6 +31,7 @@ class Schema(object):
     FORMAT_CALLABLE_GETTER = defaultdict(
         lambda: lambda x: x if isinstance(x, bytes) else str(x), {
             SchemaFormat.DATE.value: format_date,
+            SchemaFormat.PHONE.value: format_phone
         })
 
     VALIDATOR_CALLABLE_GETTER = {
